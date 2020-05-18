@@ -1,0 +1,69 @@
+// Using Arrays.toString()
+package hello;
+public class StringFinder {
+   String[] stringArray;
+   public StringFinder(String[] stringArray) {
+       this.stringArray = stringArray;
+   }
+   public static void main(String[] args) {
+	   
+// print time milliseconds
+       long time1 = System.currentTimeMillis();
+       String[] thisIsAStringArray = new String[5];
+       thisIsAStringArray[0] = "asd";
+       thisIsAStringArray[1] = "asdd";
+       thisIsAStringArray[2] = "fre";
+       thisIsAStringArray[3] = "glk";
+       thisIsAStringArray[4] = "lkm";
+//using Stringfinder.find() Method find string in array      
+       StringFinder stringFinder = new StringFinder(thisIsAStringArray);
+
+       String[] foundStringArray = stringFinder.find("asd");
+//Instead of i < 50000 use stringArray.length
+       for (int i= 0; i < 50000;i++)
+       {
+	       for (String str: foundStringArray) {
+	
+
+	          // System.out.println(str);
+	       }
+       }
+
+       System.out.println("Performance Milli sec :"+(System.currentTimeMillis() - time1)); 
+   }
+
+   private String[] find(String inputString) {
+       String[] foundStringArray = new String[stringArray.length];
+      // System.out.println("Input String:" + inputString);
+       int matchedOutputIndex = 0;
+       for(String str: stringArray) {
+    	  // System.out.println("Match String:" + str);
+    	   char[] inputChars = inputString. toCharArray();
+    	   int matchCount = 0;
+    	   for (char output : inputChars) {
+    		      if(str.indexOf(output) >= 0) {
+    		    	//  System.out.println("Character Matched:" + output);
+    			      matchCount++;
+    		   }
+    		   else
+    		   {
+    			   break;
+    		   }
+    	   }
+    	  // System.out.println("Match Count:"+ matchCount);
+    	   
+
+    	   if (matchCount == inputString.length())
+    	   {
+    		   //System.out.println("Match Found");
+    		   foundStringArray[matchedOutputIndex++] = str;
+    	   }
+    
+
+       }
+       return foundStringArray;
+   }
+}
+// Total Performance time
+Output :
+Performance Milli sec :2
